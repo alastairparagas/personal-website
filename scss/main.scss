@@ -228,16 +228,18 @@ main {
     margin-bottom: 25px;
     
     li {
-      a {
-        
-      }
-      
-      display: flex;
-      align-items: center;
       background: $secondary-color;
-      padding: 2%;
       margin-top: 2%;
       margin-bottom: 2%;
+      
+      a {
+        all: unset;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 2%;
+        margin: 0;
+      }
       
       img {
         width: 60px;
@@ -246,13 +248,6 @@ main {
         flex-shrink: 0;
       }
     }
-  }
-  
-  a {
-    display: block;
-    width: 50%;
-    margin-left: 25%;
-    text-align: center;
   }
   
   @media screen and (max-width: 880px) {
