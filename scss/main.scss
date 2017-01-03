@@ -1,0 +1,259 @@
+@import '_reset.scss';
+@import '_variables.scss';
+@import '_grid.scss';
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+  line-height: 180%;
+  color: white;
+  a {
+    padding: 7px;
+    background: white;
+    color: $main-color;
+    text-decoration: none;
+    font-weight: bold;
+    text-shadow: none;
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+}
+
+div {
+  box-sizing: border-box;
+}
+
+strong {
+  font-weight: 400;
+}
+
+main {
+  background: $main-color;
+  min-height: 60vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  h1 {
+    font-size: 220%;
+    margin-bottom: 2rem;
+  }
+  
+  figure {
+    flex-basis: 35%;
+    margin-left: 15%;
+    text-align: center;
+    img {
+      border-radius: 100%;
+      max-width: 55%;
+    }
+  }
+  
+  section#headerInfo {
+    text-shadow: 0px 2px 1px rgba(#444, 0.07);
+    line-height: 340%;
+    flex-basis: 50%;
+    a {
+      margin-right: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 1200px) {
+    figure {
+      flex-basis: 45% !important;
+      margin-left: 5%;
+    }
+    section#headerInfo {
+      flex-basis: 45% !important;
+    }
+  }
+  @media screen and (max-width: 979px) {
+    section#headerInfo {
+      line-height: 340% !important;
+      flex-basis: 45% !important;
+    }
+  }
+  @media screen and (max-width: 880px) {
+    min-height: 70vh;
+    figure {
+      display: none;
+    }
+    section#headerInfo {
+      flex-basis: 90% !important;
+      margin-left: 5%;
+    }
+  }
+}
+
+#talentBox {
+  @extend %two_grid;
+  background: $main-color;
+  min-height: 20vh;
+  align-items: stretch;
+  
+  div {
+    margin-top: 0px;
+    margin-bottom: 40px;
+    padding: 20px;
+  }
+  div:first-child {
+    background: darken($main-color, 5%);
+    
+  }
+  div:nth-child(2) {
+    background: #636F9B;
+  }
+  
+  @media screen and (max-width: 880px) {
+    flex-direction: column;
+    div {
+      padding-left: 5%;
+      padding-right: 5%;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: 4vh;
+      padding-bottom: 4vh;
+    }
+  }
+}
+
+#activityTimeline {
+  @extend %two_grid;
+  min-height: 10vh;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
+  background: $secondary-color;
+  
+  div:first-child {
+    flex-direction: column;
+    justify-content: center;
+  }
+  h2 {
+    font-size: 200%;
+  }
+  
+  @media screen and (max-width: 880px) {
+    flex-direction: column;
+    min-height: 50vh;
+    padding-top: 0;
+    padding-bottom: 0;
+    
+    div {
+      padding: 5%;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    div:nth-child(2) {
+      min-height: 30vh;
+    }
+  }
+}
+
+#originStory {
+  background: $secondary-color;
+  padding-left: 17.5%;
+  padding-right: 17.5%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  
+  h2 {
+    font-weight: bold;
+    font-size: 150%;
+    padding-bottom: 4%;
+  }
+  
+  p {
+    padding-bottom: 4%;
+  }
+  
+  p:last-child {
+    padding-bottom: 0%;
+  }
+  
+  @media screen and (max-width: 880px) {
+    padding-left: 5%;
+    padding-right: 5%; 
+  }
+}
+
+#projects {
+  background: $main-color;
+  padding-left: 17.5%;
+  padding-right: 17.5%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  
+  h2 {
+    font-weight: bold;
+    font-size: 150%;
+  }
+  
+  ul {
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    
+    li {
+      a {
+        
+      }
+      
+      display: flex;
+      align-items: center;
+      background: $secondary-color;
+      padding: 2%;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      
+      img {
+        width: 60px;
+        float: left;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+    }
+  }
+  
+  a {
+    display: block;
+    width: 50%;
+    margin-left: 25%;
+    text-align: center;
+  }
+  
+  @media screen and (max-width: 880px) {
+    padding-left: 5%;
+    padding-right: 5%;
+    
+    a {
+      margin-left: 10%;
+      width: 80%;
+    }
+  }
+  
+}
+
+footer {
+  background: #444;
+  padding-left: 17.5%;
+  padding-right: 17.5%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  
+  a {
+    color: #444;
+  }
+  
+  p {
+    padding-bottom: 4%;
+  }
+  
+  @media screen and (max-width: 880px) {
+    padding-left: 5%;
+    padding-right: 5%; 
+  }
+}
