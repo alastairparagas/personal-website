@@ -10,8 +10,10 @@ html, body {
   font-size: 15px;
   line-height: 180%;
   color: white;
+  
   a {
-    padding: 7px;
+    line-height: 100%;
+    padding: 12.5px;
     background: white;
     color: $main-color;
     text-decoration: none;
@@ -19,6 +21,7 @@ html, body {
     text-shadow: none;
     margin-left: 3px;
     margin-right: 3px;
+    display: inline-block;
   }
   
   strong {
@@ -64,21 +67,35 @@ main {
     a {
       margin-right: 15px;
     }
+    ul li {
+      display: block;
+    }
   }
   
   @media screen and (max-width: 1200px) {
     figure {
-      flex-basis: 45% !important;
+      flex-basis: 45%;
       margin-left: 5%;
     }
     section#headerInfo {
-      flex-basis: 45% !important;
+      flex-basis: 45%;
+      text-align: left;
     }
   }
   @media screen and (max-width: 979px) {
+    min-height: 70vh;
+    figure {
+      display: none;
+    }
     section#headerInfo {
-      line-height: 340% !important;
-      flex-basis: 45% !important;
+      flex-basis: 90%;
+      margin-left: 5%;
+      text-align: center;
+      ul li {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 260%;
+      }
     }
   }
   @media screen and (max-width: 880px) {
@@ -89,6 +106,12 @@ main {
     section#headerInfo {
       flex-basis: 90% !important;
       margin-left: 5%;
+      
+      ul li {
+        padding-top: 3%;
+        padding-bottom: 3%;
+        line-height: 200%;
+      }
     }
   }
 }
@@ -119,12 +142,13 @@ main {
   @media screen and (max-width: 880px) {
     flex-direction: column;
     div {
+      min-height: 20vh;
       padding-left: 5%;
       padding-right: 5%;
       margin-top: 0;
       margin-bottom: 0;
-      padding-top: 4vh;
-      padding-bottom: 4vh;
+      padding-top: 3vh;
+      padding-bottom: 3vh;
     }
   }
 }
@@ -146,9 +170,7 @@ main {
   
   @media screen and (max-width: 880px) {
     flex-direction: column;
-    min-height: 50vh;
-    padding-top: 0;
-    padding-bottom: 0;
+    min-height: 33vh;
     
     div {
       padding: 5%;
