@@ -1,6 +1,7 @@
 @import '_reset.scss';
 @import '_variables.scss';
 @import '_grid.scss';
+@import '_mixins.scss';
 
 html, body {
   margin: 0;
@@ -12,16 +13,12 @@ html, body {
   color: white;
   
   a {
-    line-height: 100%;
-    padding: 12.5px;
-    background: white;
-    color: $main-color;
     text-decoration: none;
-    font-weight: bold;
-    text-shadow: none;
-    margin-left: 3px;
-    margin-right: 3px;
-    display: inline-block;
+    color: white;
+  }
+  
+  a.buttonable {
+    @include white_button();
   }
   
   strong {
@@ -66,6 +63,7 @@ main {
     flex-basis: 50%;
     a {
       margin-right: 15px;
+      margin-bottom: 15px;
     }
     ul li {
       display: block;
@@ -119,13 +117,12 @@ main {
 #talentBox {
   @extend %two_grid;
   background: $main-color;
-  min-height: 20vh;
   align-items: stretch;
   
   div {
     margin-top: 0px;
     margin-bottom: 40px;
-    padding: 20px;
+    padding: 15px;
   }
   div:first-child {
     background: darken($main-color, 5%);
@@ -141,14 +138,14 @@ main {
   
   @media screen and (max-width: 880px) {
     flex-direction: column;
+    
     div {
       min-height: 20vh;
+      padding: 7.5%;
       padding-left: 5%;
       padding-right: 5%;
       margin-top: 0;
       margin-bottom: 0;
-      padding-top: 3vh;
-      padding-bottom: 3vh;
     }
   }
 }
@@ -156,8 +153,8 @@ main {
 #activityTimeline {
   @extend %two_grid;
   min-height: 10vh;
-  padding-top: 3vh;
-  padding-bottom: 3vh;
+  padding-top: 5%;
+  padding-bottom: 5%;
   background: $secondary-color;
   
   div:first-child {
@@ -165,13 +162,14 @@ main {
     justify-content: center;
   }
   h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
     font-size: 200%;
   }
   
   @media screen and (max-width: 880px) {
     flex-direction: column;
     min-height: 33vh;
-    
     div {
       padding: 5%;
       margin-top: 0;
@@ -253,11 +251,6 @@ main {
   @media screen and (max-width: 880px) {
     padding-left: 5%;
     padding-right: 5%;
-    
-    a {
-      margin-left: 10%;
-      width: 80%;
-    }
   }
   
 }
