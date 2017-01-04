@@ -53,7 +53,7 @@
             currentNode = skillsBoxNode,
             currentNodeParent = currentNode.parentNode;
         
-        return function() {
+        function stateMachine() {
           var newNode = skillsDivs[currentIndex];
           currentNodeParent.replaceChild(newNode, currentNode);
           currentNode = newNode;
@@ -63,6 +63,9 @@
             currentIndex = 0;
           }
         }
+        
+        stateMachine();
+        return stateMachine;
       }
       
       setInterval(domChanger(), 8000);
