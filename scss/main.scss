@@ -30,10 +30,6 @@ div {
   box-sizing: border-box;
 }
 
-strong {
-  font-weight: 400;
-}
-
 main {
   background: $main-color;
   min-height: 60vh;
@@ -119,10 +115,11 @@ main {
   @extend %two_grid;
   background: $main-color;
   align-items: stretch;
+  padding-top: 0px;
+  padding-bottom: 40px;
   
   div {
-    margin-top: 0px;
-    margin-bottom: 40px;
+    min-height: 17.5vh;
     padding: 15px;
   }
   div:first-child {
@@ -139,6 +136,7 @@ main {
   
   @media screen and (max-width: 880px) {
     flex-direction: column;
+    padding-bottom: 0px;
     
     div {
       min-height: 20vh;
@@ -153,9 +151,9 @@ main {
 
 #activityTimeline {
   @extend %two_grid;
-  min-height: 10vh;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  min-height: 12.5vh;
+  padding-top: 20px;
+  padding-bottom: 20px;
   background: $secondary-color;
   
   div:first-child {
@@ -179,33 +177,6 @@ main {
     div:nth-child(2) {
       min-height: 30vh;
     }
-  }
-}
-
-#originStory {
-  background: $secondary-color;
-  padding-left: 17.5%;
-  padding-right: 17.5%;
-  padding-top: 4%;
-  padding-bottom: 4%;
-  
-  h2 {
-    font-weight: bold;
-    font-size: 150%;
-    padding-bottom: 4%;
-  }
-  
-  p {
-    padding-bottom: 4%;
-  }
-  
-  p:last-child {
-    padding-bottom: 0%;
-  }
-  
-  @media screen and (max-width: 880px) {
-    padding-left: 5%;
-    padding-right: 5%; 
   }
 }
 
@@ -253,7 +224,33 @@ main {
     padding-left: 5%;
     padding-right: 5%;
   }
+}
+
+#originStory {
+  background: $secondary-color;
+  padding-left: 17.5%;
+  padding-right: 17.5%;
+  padding-top: 4%;
+  padding-bottom: 4%;
   
+  h2 {
+    font-weight: bold;
+    font-size: 150%;
+    padding-bottom: 4%;
+  }
+  
+  p {
+    padding-bottom: 4%;
+  }
+  
+  p:last-child {
+    padding-bottom: 0%;
+  }
+  
+  @media screen and (max-width: 880px) {
+    padding-left: 5%;
+    padding-right: 5%; 
+  }
 }
 
 footer {
