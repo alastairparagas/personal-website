@@ -4,6 +4,11 @@
   var DOM = window.document;
   
   var skillsList = [{
+    color: "#c79c49",
+    img: "https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/icon.javascript.png",
+    title: "Javascript",
+    description: "A popular, single-threaded programming language with 2 famous use-cases - server-side with NodeJS and as a browser front-end."
+  }, {
     color: "#636F9B",
     img: "https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/icon.php.png",
     title: "PHP",
@@ -18,6 +23,16 @@
     img: "https://ih0.redbubble.net/image.267525517.4452/flat,800x800,070,f.jpg",
     title: "Haskell",
     description: "A strictly functional programming language that excels for a lot of math-based applications."
+  }, {
+    color: "#B85800",
+    img: "http://www.careertechz.com/wp-content/uploads/2014/04/1398381591_Java.png",
+    title: "Java",
+    description: "A VM bytecode-compiled programming language for mid-level systems and support tasks and services."
+  }, {
+    color: "#224156", 
+    img: "https://thenewboston.com/images/forum/logos/8.png",
+    title: "C",
+    description: "A low-level programming language that gets as close to the machine as possible without sacrificing much platform interop."
   }];
   
   function _main() {
