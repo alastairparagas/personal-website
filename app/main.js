@@ -25,12 +25,17 @@
     description: "A strictly functional programming language that excels for a lot of math-based applications."
   }, {
     color: "#B85800",
-    img: "http://www.careertechz.com/wp-content/uploads/2014/04/1398381591_Java.png",
+    img: "https://orig00.deviantart.net/7385/f/2016/269/f/9/java_icon_flat_by_dertokur-d82sy8p.png",
     title: "Java",
     description: "A VM bytecode-compiled programming language for mid-level systems and support tasks and services."
   }, {
+    color: "#B85800",
+    img: "https://humancoders-formations.s3.amazonaws.com/uploads/course/logo/102/formation-scala.png",
+    title: "Scala",
+    description: "A mixed OOP and functional paradigm language with full interopability with the Java ecosystem."
+  }, {
     color: "#224156", 
-    img: "https://thenewboston.com/images/forum/logos/8.png",
+    img: "https://wikiprogramming.org/wp-content/uploads/2015/05/c-logo.png",
     title: "C",
     description: "A low-level programming language that gets as close to the machine as possible without sacrificing much platform interop."
   }];
