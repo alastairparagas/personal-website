@@ -37,7 +37,7 @@
     color: "#224156", 
     img: "https://wikiprogramming.org/wp-content/uploads/2015/05/c-logo.png",
     title: "C",
-    description: "A low-level programming language that gets as close to the machine as possible without sacrificing much platform interop."
+    description: "A low-level programming language that gets as close to the machine as possible without sacrificing much architecture interop."
   }];
   
   function _main() {
