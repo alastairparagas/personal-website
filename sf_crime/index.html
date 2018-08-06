@@ -37,6 +37,7 @@
         accessToken: 'pk.eyJ1IjoiYWxhc3RhaXJwYXJhZ2FzIiwiYSI6ImNqa2Zpeml0azA3c3Uzd3FnYmF0Y2NxeHQifQ.1O373Eg519MobdBA1E6sUw'
       }).addTo(map_interface);
       
+      // Dynamically creates a web worker from a given executor function
       function createWorker(executorFunction) {
         const blob = new Blob(['self.onmessage = ', executorFunction.toString().trim(), ';'], {
           type: 'text/javascript'
@@ -45,6 +46,7 @@
         return new Worker(URL.createObjectURL(blob));
       }
       
+      // Specific worker for doing SF Crime Data clustering by crime rate
       const clustererAndRankererWorker = createWorker((event) => {
         const CLUSTERS = 5;
         
@@ -110,6 +112,7 @@
         self.postMessage(crimeAggregateClustered);
       });
       
+      // Combines web worker "work" and map painting
       async function clusterRankDistrictsInMap(sfCrimeData) {
         const clusteredAndRankedData = await new Promise((resolve, reject) => {
           const workerEventListener = (message) => {
@@ -166,6 +169,7 @@
         }).addTo(map_interface);
       }
       
+      // Let the main program run!
       fetch("https://data.sfgov.org/resource/956q-2t7k.json?$limit=50000")
         .catch(() => window.alert("Could not load SF Crime data"))
         .then(res => res.text())
