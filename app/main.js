@@ -5,12 +5,12 @@
   
   var skillsList = [{
     color: "#c79c49",
-    img: "https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/icon.javascript.png",
+    img: "https://upload.wikimedia.org/wikipedia/commons/9/99/Unofficial_JavaScript_logo_2.svg",
     title: "Javascript",
     description: "A popular, single-threaded programming language with 2 famous use-cases - server-side with NodeJS and as a browser front-end."
   }, {
     color: "#636F9B",
-    img: "https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/icon.php.png",
+    img: "https://appica.com.au/wp-content/uploads/2017/11/php-square-logo.png",
     title: "PHP",
     description: "A high-level general utility programming language that excels for server-side OOP-based software development."
   }, {
