@@ -10,7 +10,7 @@
     description: "A popular, single-threaded programming language with 2 famous use-cases - server-side with NodeJS and as a browser front-end."
   }, {
     color: "#636F9B",
-    img: "https://appica.com.au/wp-content/uploads/2017/11/php-square-logo.png",
+    img: "https://equestsolutions.net/wp-content/uploads/2014/08/php-logo.jpg",
     title: "PHP",
     description: "A high-level general utility programming language that excels for server-side OOP-based software development."
   }, {
