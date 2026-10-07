@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seattle Marathon 2026 Blueprint</title>
     <style>
         @page {
@@ -19,10 +20,10 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             font-size: 8.5pt;
             color: #1e293b;
-            background-color: #ffffff;
+            background-color: #f8fafc;
             margin: 0;
-            padding: 0;
-            line-height: 1.25;
+            padding: 8px;
+            line-height: 1.3;
         }
 
         .container {
@@ -30,18 +31,30 @@
             margin: 0 auto;
         }
 
+        /* Responsive Table Scroll Container */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
         /* Header Banner Style */
         .header {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
             color: #ffffff;
-            padding: 12px 16px;
-            border-radius: 6px;
+            padding: 14px 16px;
+            border-radius: 8px;
             margin-bottom: 12px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .header h1 {
-            font-size: 14pt;
+            font-size: 13pt;
             font-weight: 700;
             margin: 0 0 6px 0;
             letter-spacing: -0.2px;
@@ -52,7 +65,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 4px 16px;
-            font-size: 8.2pt;
+            font-size: 8pt;
             color: #cbd5e1;
         }
 
@@ -62,10 +75,10 @@
 
         /* Section Titles */
         .section-title {
-            font-size: 10pt;
+            font-size: 9.5pt;
             font-weight: 700;
             color: #0f172a;
-            margin-top: 10px;
+            margin-top: 12px;
             margin-bottom: 6px;
             padding-left: 8px;
             border-left: 4px solid #2563eb;
@@ -78,10 +91,7 @@
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            margin-bottom: 12px;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
+            min-width: 580px;
         }
 
         .matrix-table th {
@@ -89,7 +99,7 @@
             color: #f8fafc;
             text-align: left;
             font-weight: 600;
-            padding: 6px 8px;
+            padding: 7px 8px;
             font-size: 8pt;
             text-transform: uppercase;
             letter-spacing: 0.3px;
@@ -97,7 +107,7 @@
 
         .matrix-table td {
             border-bottom: 1px solid #e2e8f0;
-            padding: 5px 8px;
+            padding: 7px 8px;
             font-size: 8pt;
             vertical-align: middle;
             background-color: #ffffff;
@@ -107,18 +117,12 @@
             background-color: #f8fafc;
         }
 
-        .matrix-table tr:last-child td {
-            border-bottom: none;
-        }
-
         /* Schedule Table */
         .schedule-table {
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid #cbd5e1;
+            min-width: 780px;
         }
 
         .schedule-table th {
@@ -126,7 +130,7 @@
             color: #ffffff;
             text-align: left;
             font-weight: 600;
-            padding: 6px 4px;
+            padding: 7px 5px;
             font-size: 7.5pt;
             text-transform: uppercase;
             letter-spacing: 0.2px;
@@ -135,10 +139,10 @@
         .schedule-table td {
             border-bottom: 1px solid #e2e8f0;
             border-right: 1px solid #f1f5f9;
-            padding: 4px;
-            font-size: 7.1pt;
+            padding: 6px 5px;
+            font-size: 7.2pt;
             vertical-align: top;
-            line-height: 1.15;
+            line-height: 1.2;
             background-color: #ffffff;
         }
 
@@ -150,12 +154,31 @@
             background-color: #f8fafc;
         }
 
-        .wk-col { width: 10%; background-color: #f1f5f9 !important; font-weight: bold; }
-        .day-col { width: 12.8%; }
+        .wk-col { 
+            width: 11%; 
+            background-color: #f1f5f9 !important; 
+            font-weight: bold; 
+        }
+        
+        .day-col { width: 12.7%; }
+
+        /* Mobile Sticky Column */
+        .schedule-table th:first-child,
+        .schedule-table td:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .schedule-table th:first-child {
+            background-color: #1e293b !important;
+            z-index: 3;
+        }
 
         /* Custom Typography */
         .bold { font-weight: 700; color: #0f172a; }
-        .subtext { font-size: 6.6pt; color: #475569; display: block; margin-top: 2px; }
+        .subtext { font-size: 6.5pt; color: #475569; display: block; margin-top: 2px; }
 
         /* Workout Category Styling */
         .tag-threshold { color: #dc2626; font-weight: 700; }
@@ -184,6 +207,8 @@
             font-size: 6pt;
             font-weight: 800;
             text-transform: uppercase;
+            display: inline-block;
+            margin-top: 2px;
         }
 
         .badge-bridge {
@@ -194,6 +219,8 @@
             font-size: 6pt;
             font-weight: 800;
             text-transform: uppercase;
+            display: inline-block;
+            margin-top: 2px;
         }
 
         .badge-taper {
@@ -204,6 +231,44 @@
             font-size: 6pt;
             font-weight: 800;
             text-transform: uppercase;
+            display: inline-block;
+            margin-top: 2px;
+        }
+
+        /* Mobile Screen Enhancements (< 640px) */
+        @media screen and (max-width: 640px) {
+            body {
+                padding: 4px;
+            }
+
+            .header {
+                padding: 10px 12px;
+            }
+
+            .header h1 {
+                font-size: 11pt;
+            }
+
+            .meta-grid {
+                grid-template-columns: 1fr;
+                gap: 2px;
+                font-size: 7.5pt;
+            }
+
+            .schedule-table td {
+                padding: 5px 4px;
+                font-size: 7pt;
+            }
+
+            .subtext {
+                font-size: 6.2pt;
+            }
+        }
+
+        @media print {
+            body { padding: 0; background-color: #ffffff; }
+            .table-responsive { overflow: visible !important; border: none !important; }
+            .schedule-table th:first-child, .schedule-table td:first-child { position: static !important; box-shadow: none !important; }
         }
     </style>
 </head>
@@ -213,195 +278,200 @@
 
     <!-- Header Section -->
     <div class="header">
-        <h1>Seattle Marathon 2026 Blueprint (Full 12-Week Master Plan)</h1>
+        <h1>Seattle Marathon 2026 Blueprint (Sub-3:30 Master Plan)</h1>
         <div class="meta-grid">
-            <div class="meta-item"><strong>Weekly Volume:</strong> 30–46 Miles/Week &nbsp;|&nbsp; <strong>Course Elevation:</strong> ~818 ft Gain (Rolling / Pier 66 Finish)</div>
+            <div class="meta-item"><strong>Target Pace:</strong> 7:55–8:00/mi (3:28:00 Goal)</div>
+            <div class="meta-item"><strong>Course Profile:</strong> ~818 ft Gain (Rolling / Pier 66 Finish)</div>
         </div>
     </div>
 
     <!-- Matrix Section -->
     <div class="section-title">1. Intensity & Pace Distribution Matrix</div>
-    <table class="matrix-table">
-        <thead>
-            <tr>
-                <th style="width: 22%;">Category</th>
-                <th style="width: 18%;">Target Pace</th>
-                <th style="width: 24%;">Coros HR Zone / Effort</th>
-                <th style="width: 36%;">Primary Physiological Benefit</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="bold tag-easy">Easy / Aerobic</td>
-                <td>8:45–9:30+/mi</td>
-                <td>&lt; 152 bpm (Recovery / Aerobic End.)</td>
-                <td>Capillary density, tissue resilience, fatigue clearance</td>
-            </tr>
-            <tr>
-                <td class="bold tag-mlr">Medium-Long Run (MLR)</td>
-                <td>8:30–9:15/mi</td>
-                <td>135–152 bpm (Aerobic Endurance)</td>
-                <td>Mid-week glycogen depletion, late-race quad durability</td>
-            </tr>
-            <tr>
-                <td class="bold tag-marathon">Marathon Pace (MP)</td>
-                <td>7:55–8:00/mi</td>
-                <td>153–161 bpm (Aerobic Power)</td>
-                <td>Glycogen sparing, biomechanical economy at 3:29 pace</td>
-            </tr>
-            <tr>
-                <td class="bold tag-threshold">Threshold (LT)</td>
-                <td>7:30–7:40/mi</td>
-                <td>162–172 bpm (Threshold)</td>
-                <td>Lactate clearance capacity (controlled effort)</td>
-            </tr>
-            <tr>
-                <td class="bold tag-long">Long Run (Target Terrain)</td>
-                <td>8:30–9:30/mi</td>
-                <td>135–152 bpm (Aerobic End. Dominant)</td>
-                <td>Fat oxidation, rolling climb pacing, downhill eccentric resistance</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="matrix-table">
+            <thead>
+                <tr>
+                    <th style="width: 22%;">Category</th>
+                    <th style="width: 18%;">Target Pace</th>
+                    <th style="width: 24%;">Coros HR Zone / Effort</th>
+                    <th style="width: 36%;">Primary Physiological Benefit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="bold tag-easy">Easy / Aerobic</td>
+                    <td>8:45–9:30+/mi</td>
+                    <td>&lt; 152 bpm (Recovery / Aerobic End.)</td>
+                    <td>Capillary density, tissue resilience, fatigue clearance</td>
+                </tr>
+                <tr>
+                    <td class="bold tag-mlr">Medium-Long Run (MLR)</td>
+                    <td>8:30–9:15/mi</td>
+                    <td>135–152 bpm (Aerobic Endurance)</td>
+                    <td>Mid-week glycogen depletion, late-race quad durability</td>
+                </tr>
+                <tr>
+                    <td class="bold tag-marathon">Marathon Pace (MP)</td>
+                    <td>7:55–8:00/mi</td>
+                    <td>153–161 bpm (Aerobic Power)</td>
+                    <td>Glycogen sparing, biomechanical economy at 3:29 pace</td>
+                </tr>
+                <tr>
+                    <td class="bold tag-threshold">Threshold (LT)</td>
+                    <td>7:30–7:40/mi</td>
+                    <td>162–172 bpm (Threshold)</td>
+                    <td>Lactate clearance capacity (controlled effort)</td>
+                </tr>
+                <tr>
+                    <td class="bold tag-long">Long Run (Target Terrain)</td>
+                    <td>8:30–9:30/mi</td>
+                    <td>135–152 bpm (Aerobic End. Dominant)</td>
+                    <td>Fat oxidation, rolling climb pacing, downhill eccentric resistance</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <!-- Schedule Section -->
     <div class="section-title">2. Complete 12-Week Schedule (Sep 7 – Nov 29, 2026)</div>
-    <table class="schedule-table">
-        <thead>
-            <tr>
-                <th class="wk-col">Wk / Volume</th>
-                <th class="day-col">Mon</th>
-                <th class="day-col">Tue (Quality)</th>
-                <th class="day-col">Wed (Flush)</th>
-                <th class="day-col">Thu (MLR)</th>
-                <th class="day-col">Fri</th>
-                <th class="day-col">Sat (Hills/Strides)</th>
-                <th class="day-col">Sun (Long Run & Elev)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="wk-col">W1 (Sep 7-13)<br><strong>30 mi</strong></td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-easy">EASY</span><br>6m Easy</td>
-                <td><span class="tag-easy">EASY</span><br>6m Easy<br><span class="subtext">HEAVY LOWER</span></td>
-                <td><span class="tag-easy">EASY</span><br>6m Easy + 4x Strides</td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-easy">EASY</span><br>3m Shakeout + 4x Hills</td>
-                <td><span class="tag-long">LONG RUN</span><br>9m Easy (Aerobic)<br><span class="subtext">Elev: ~200–250 ft</span></td>
-            </tr>
-            <tr>
-                <td class="wk-col">W2 (Sep 14-20)<br><strong>39 mi</strong></td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-threshold">THRESHOLD</span><br>8m (4 x 1m LT)</td>
-                <td><span class="tag-easy">EASY</span><br>7m Easy<br><span class="subtext">HEAVY LOWER</span></td>
-                <td><span class="tag-easy">EASY</span><br>7m Easy + 4x Strides</td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Hills</td>
-                <td><span class="tag-long">LONG RUN</span><br>14m Aerobic<br><span class="subtext">Elev: ~350–400 ft</span></td>
-            </tr>
-            <tr>
-                <td class="wk-col">W3 (Sep 21-27)<br><strong>41 mi</strong></td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-marathon">MARATHON</span><br>8m (2-3m @ MP)</td>
-                <td><span class="tag-easy">EASY</span><br>7m Easy<br><span class="subtext">HEAVY LOWER</span></td>
-                <td><span class="tag-easy">EASY</span><br>7m Easy + 4x Strides</td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Hills</td>
-                <td><span class="tag-long">LONG RUN</span><br>15m Easy/Steady<br><span class="subtext">Elev: ~400–450 ft</span></td>
-            </tr>
-            <tr>
-                <td class="wk-col">W4 (Sep 28-Oct 4)<br><strong>44 mi</strong></td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-threshold">THRESHOLD</span><br>9m (5 x 1m LT)</td>
-                <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
-                <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                <td>REST<br><span class="subtext">UPPER/PREHAB</span></td>
-                <td><span class="tag-easy">EASY</span><br>4m + Hills/Strides</td>
-                <td><span class="tag-long">LONG RUN</span><br>16m Continuous<br><span class="subtext">Elev: 500–600 ft</span></td>
-            </tr>
-            <tr>
-                <td class="wk-col">W5 (Oct 5-11)<br><strong>34 mi</strong><br><span class="badge-taper">Deload</span></td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-marathon">MARATHON</span><br>8m (3m @ MP)</td>
-                <td><span class="tag-flush">FLUSH</span><br>3m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
-                <td><span class="tag-mlr">MLR</span><br>8m Deload<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                <td>REST<br><span class="subtext">UPPER/PREHAB</span></td>
-                <td><span class="tag-easy">EASY</span><br>3m Easy Shakeout</td>
-                <td><span class="tag-long">LONG RUN</span><br>12m Deload<br><span class="subtext">Elev: ~300–350 ft</span></td>
-            </tr>
-            <tr>
-                <td class="wk-col">W6 (Oct 12-18)<br><strong>46 mi</strong></td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-threshold">THRESHOLD</span><br>9m (3 x 2m LT)</td>
-                <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
-                <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                <td>REST<br><span class="subtext">UPPER/PREHAB</span></td>
-                <td><span class="tag-easy">EASY</span><br>4m + Hills/Strides</td>
-                <td><span class="tag-long">LONG RUN</span><br>18m (10m E + 6m MP)<br><span class="subtext">Elev: 600–700 ft</span></td>
-            </tr>
-            <tr>
-                <td class="wk-col">W7 (Oct 19-25)<br><strong>45 mi</strong></td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-marathon">MARATHON</span><br>9m (4m @ MP)</td>
-                <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
-                <td><span class="tag-mlr">MLR</span><br>12m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                <td>REST<br><span class="subtext">UPPER/PREHAB</span></td>
-                <td><span class="tag-easy">EASY</span><br>4m + Strides</td>
-                <td><span class="tag-long">LONG RUN</span><br>16m Rolling Hills<br><span class="subtext">Elev: 750–850 ft</span></td>
-            </tr>
-            <tr class="highlight-peak">
-                <td class="wk-col">W8 (Oct 26-Nov 1)<br><strong>45 mi</strong><br><span class="badge-peak">PEAK WEEK</span></td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-threshold">THRESHOLD</span><br>8m + Strides</td>
-                <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER (LAST)</span></td>
-                <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                <td>REST<br><span class="subtext">LIGHT CORE</span></td>
-                <td><span class="tag-easy">EASY</span><br>2m Shakeout</td>
-                <td><span class="tag-long">PEAK TEST</span><br>20m (10m E + 8m MP)<br><span class="subtext">Elev: ~818 ft (Course Sim)</span></td>
-            </tr>
-            <tr class="highlight-bridge">
-                <td class="wk-col">W9 (Nov 2-8)<br><strong>41 mi</strong><br><span class="badge-bridge">BRIDGE WEEK</span></td>
-                <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                <td><span class="tag-threshold">THRESHOLD</span><br>8m (3 x 1m LT)</td>
-                <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">NO LIFTING</span></td>
-                <td><span class="tag-mlr">MLR</span><br>10m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                <td>REST<br><span class="subtext">LIGHT CORE</span></td>
-                <td><span class="tag-easy">EASY</span><br>3m Easy + Strides</td>
-                <td><span class="tag-long">LONG RUN</span><br>16m Steady<br><span class="subtext">Elev: 500–600 ft</span></td>
-            </tr>
-            <tr>
-                <td class="wk-col">W10 (Nov 9-15)<br><strong>31 mi</strong><br><span class="badge-taper">Taper 1</span></td>
-                <td>REST<br><span class="subtext">LIGHT CORE</span></td>
-                <td><span class="tag-marathon">MARATHON</span><br>7m (3m @ MP)</td>
-                <td><span class="tag-easy">EASY</span><br>6m Easy<br><span class="subtext">LIGHT UPPER</span></td>
-                <td><span class="tag-easy">EASY</span><br>5m Easy + 4x Strides</td>
-                <td>REST<br><span class="subtext">LIGHT CORE</span></td>
-                <td><span class="tag-easy">EASY</span><br>3m Easy + 4x Hills</td>
-                <td><span class="tag-long">LONG RUN</span><br>10m Taper<br><span class="subtext">Elev: ~300 ft</span></td>
-            </tr>
-            <tr>
-                <td class="wk-col">W11 (Nov 16-22)<br><strong>25 mi</strong><br><span class="badge-taper">Taper 2</span></td>
-                <td>REST</td>
-                <td><span class="tag-marathon">MARATHON</span><br>6m (2m @ MP)</td>
-                <td><span class="tag-easy">EASY</span><br>5m Easy</td>
-                <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Strides</td>
-                <td>REST</td>
-                <td><span class="tag-easy">EASY</span><br>3m Shakeout</td>
-                <td><span class="tag-long">LONG RUN</span><br>7m Easy<br><span class="subtext">Elev: &lt;200 ft</span></td>
-            </tr>
-            <tr>
-                <td class="wk-col">W12 (Nov 23-29)<br><strong>RACE WEEK</strong></td>
-                <td>REST</td>
-                <td><span class="tag-easy">EASY</span><br>4m Easy + Strides</td>
-                <td><span class="tag-easy">EASY</span><br>3m Shakeout</td>
-                <td><span class="tag-easy">EASY</span><br>4m Easy (TGiv)</td>
-                <td>REST<br><span class="subtext">Expo / Rest</span></td>
-                <td><span class="tag-easy">EASY</span><br>2m Opener / Expo</td>
-                <td><span class="tag-marathon" style="font-size: 8pt;">RACE DAY</span><br><strong>SEATTLE MARATHON</strong><br><span class="subtext">Course: ~818 ft Gain</span></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="schedule-table">
+            <thead>
+                <tr>
+                    <th class="wk-col">Wk / Volume</th>
+                    <th class="day-col">Mon</th>
+                    <th class="day-col">Tue (Quality)</th>
+                    <th class="day-col">Wed (Flush)</th>
+                    <th class="day-col">Thu (MLR)</th>
+                    <th class="day-col">Fri</th>
+                    <th class="day-col">Sat (Hills/Strides)</th>
+                    <th class="day-col">Sun (Long Run & Elev)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="wk-col">W1 (Sep 7-13)<br><strong>30 mi</strong></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-easy">EASY</span><br>6m Easy</td>
+                    <td><span class="tag-easy">EASY</span><br>6m Easy<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>6m Easy + 4x Strides</td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>3m Shakeout + 4x Hills</td>
+                    <td><span class="tag-long">LONG RUN</span><br>9m Easy (Aerobic)<br><span class="subtext">Elev: ~200–250 ft</span></td>
+                </tr>
+                <tr>
+                    <td class="wk-col">W2 (Sep 14-20)<br><strong>39 mi</strong></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-threshold">THRESHOLD</span><br>8m (4 x 1m LT)</td>
+                    <td><span class="tag-easy">EASY</span><br>7m Easy<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>7m Easy + 4x Strides</td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Hills</td>
+                    <td><span class="tag-long">LONG RUN</span><br>14m Aerobic<br><span class="subtext">Elev: ~350–400 ft</span></td>
+                </tr>
+                <tr>
+                    <td class="wk-col">W3 (Sep 21-27)<br><strong>41 mi</strong></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-marathon">MARATHON</span><br>8m (2-3m @ MP)</td>
+                    <td><span class="tag-easy">EASY</span><br>7m Easy<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>7m Easy + 4x Strides</td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Hills</td>
+                    <td><span class="tag-long">LONG RUN</span><br>15m Easy/Steady<br><span class="subtext">Elev: ~400–450 ft</span></td>
+                </tr>
+                <tr>
+                    <td class="wk-col">W4 (Sep 28-Oct 4)<br><strong>44 mi</strong></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-threshold">THRESHOLD</span><br>9m (5 x 1m LT)</td>
+                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>4m + Hills/Strides</td>
+                    <td><span class="tag-long">LONG RUN</span><br>16m Continuous<br><span class="subtext">Elev: 500–600 ft</span></td>
+                </tr>
+                <tr>
+                    <td class="wk-col">W5 (Oct 5-11)<br><strong>34 mi</strong><br><span class="badge-taper">Deload</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-marathon">MARATHON</span><br>8m (3m @ MP)</td>
+                    <td><span class="tag-flush">FLUSH</span><br>3m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-mlr">MLR</span><br>8m Deload<br><span class="subtext">135–152 bpm Aerobic</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>3m Easy Shakeout</td>
+                    <td><span class="tag-long">LONG RUN</span><br>12m Deload<br><span class="subtext">Elev: ~300–350 ft</span></td>
+                </tr>
+                <tr>
+                    <td class="wk-col">W6 (Oct 12-18)<br><strong>46 mi</strong></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-threshold">THRESHOLD</span><br>9m (3 x 2m LT)</td>
+                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>4m + Hills/Strides</td>
+                    <td><span class="tag-long">LONG RUN</span><br>18m (10m E + 6m MP)<br><span class="subtext">Elev: 600–700 ft</span></td>
+                </tr>
+                <tr>
+                    <td class="wk-col">W7 (Oct 19-25)<br><strong>45 mi</strong></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-marathon">MARATHON</span><br>9m (4m @ MP)</td>
+                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-mlr">MLR</span><br>12m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>4m + Strides</td>
+                    <td><span class="tag-long">LONG RUN</span><br>16m Rolling Hills<br><span class="subtext">Elev: 750–850 ft</span></td>
+                </tr>
+                <tr class="highlight-peak">
+                    <td class="wk-col">W8 (Oct 26-Nov 1)<br><strong>45 mi</strong><br><span class="badge-peak">PEAK WEEK</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-threshold">THRESHOLD</span><br>8m + Strides</td>
+                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER (LAST)</span></td>
+                    <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
+                    <td>REST<br><span class="subtext">LIGHT CORE / LIGHT LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>2m Shakeout</td>
+                    <td><span class="tag-long">PEAK TEST</span><br>20m (10m E + 8m MP)<br><span class="subtext">Elev: ~818 ft (Course Sim)</span></td>
+                </tr>
+                <tr class="highlight-bridge">
+                    <td class="wk-col">W9 (Nov 2-8)<br><strong>41 mi</strong><br><span class="badge-bridge">BRIDGE WEEK</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-threshold">THRESHOLD</span><br>8m (3 x 1m LT)</td>
+                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">LIGHT UPPER/CORE (NO HEAVY LOWER)</span></td>
+                    <td><span class="tag-mlr">MLR</span><br>10m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
+                    <td>REST<br><span class="subtext">LIGHT UPPER/CORE + LIGHT LOWER MOBILITY</span></td>
+                    <td><span class="tag-easy">EASY</span><br>3m Easy + Strides</td>
+                    <td><span class="tag-long">LONG RUN</span><br>16m Steady<br><span class="subtext">Elev: 500–600 ft</span></td>
+                </tr>
+                <tr>
+                    <td class="wk-col">W10 (Nov 9-15)<br><strong>31 mi</strong><br><span class="badge-taper">Taper 1</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td><span class="tag-marathon">MARATHON</span><br>7m (3m @ MP)</td>
+                    <td><span class="tag-easy">EASY</span><br>6m Easy<br><span class="subtext">LIGHT UPPER/CORE + LIGHT LOWER MAINT.</span></td>
+                    <td><span class="tag-easy">EASY</span><br>5m Easy + 4x Strides</td>
+                    <td>REST<br><span class="subtext">LIGHT UPPER/CORE + LIGHT LOWER MAINT.</span></td>
+                    <td><span class="tag-easy">EASY</span><br>3m Easy + 4x Hills</td>
+                    <td><span class="tag-long">LONG RUN</span><br>10m Taper<br><span class="subtext">Elev: ~300 ft</span></td>
+                </tr>
+                <tr>
+                    <td class="wk-col">W11 (Nov 16-22)<br><strong>25 mi</strong><br><span class="badge-taper">Taper 2</span></td>
+                    <td>REST<br><span class="subtext">LIGHT UPPER/CORE</span></td>
+                    <td><span class="tag-marathon">MARATHON</span><br>6m (2m @ MP)</td>
+                    <td><span class="tag-easy">EASY</span><br>5m Easy<br><span class="subtext">LIGHT UPPER/CORE + BODYWEIGHT ACTIVATION</span></td>
+                    <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Strides</td>
+                    <td>REST<br><span class="subtext">LIGHT UPPER/CORE</span></td>
+                    <td><span class="tag-easy">EASY</span><br>3m Shakeout</td>
+                    <td><span class="tag-long">LONG RUN</span><br>7m Easy<br><span class="subtext">Elev: &lt;200 ft</span></td>
+                </tr>
+                <tr>
+                    <td class="wk-col">W12 (Nov 23-29)<br><strong>RACE WEEK</strong></td>
+                    <td>REST</td>
+                    <td><span class="tag-easy">EASY</span><br>4m Easy + Strides<br><span class="subtext">FINAL LIGHT UPPER (OPTIONAL)</span></td>
+                    <td><span class="tag-easy">EASY</span><br>3m Shakeout</td>
+                    <td><span class="tag-easy">EASY</span><br>4m Easy (TGiv)</td>
+                    <td>REST<br><span class="subtext">Expo / Rest</span></td>
+                    <td><span class="tag-easy">EASY</span><br>2m Opener / Expo</td>
+                    <td><span class="tag-marathon" style="font-size: 8pt;">RACE DAY</span><br><strong>SEATTLE MARATHON</strong><br><span class="subtext">Target: Sub-3:30 (7:55/mi)</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 
