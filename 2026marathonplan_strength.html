@@ -8,7 +8,531 @@
         :root {
             --bg-color: #f8fafc;
             --text-color: #0f172a;
+            --card-bg: #ffffff;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon/Wed/Fri Tiered Strength & Marathon Schedule</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --text-color: #0f172a;
             --card-bg: #ffffff;
+            --border-color: #cbd5e1;
+            --subtext-color: #475569;
+        }
+
+        @page {
+            size: letter portrait;
+            margin: 0.4in;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 8.5pt;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 12px;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 13pt;
+            font-weight: 800;
+            margin: 0 0 4px 0;
+            letter-spacing: -0.3px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 8.5pt;
+            color: #94a3b8;
+        }
+
+        /* Schedule Overview Card */
+        .schedule-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .schedule-title {
+            font-size: 9pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #0f172a;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            text-align: center;
+        }
+
+        .day-box {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 6px 4px;
+        }
+
+        .day-name {
+            font-size: 7pt;
+            font-weight: 800;
+            color: #475569;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .day-run {
+            font-size: 6.5pt;
+            font-weight: 600;
+            color: #0284c7;
+            margin-bottom: 2px;
+        }
+
+        .day-lift {
+            font-size: 6.5pt;
+            font-weight: 700;
+            padding: 2px 4px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .lift-t1 { background: #fee2e2; color: #991b1b; }
+        .lift-t2 { background: #d1fae5; color: #065f46; }
+        .lift-t34 { background: #f3e8ff; color: #6b21a8; }
+        .lift-rest { background: #f1f5f9; color: #64748b; }
+
+        /* Tier Cards */
+        .tier-card {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 14px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            page-break-inside: avoid;
+        }
+
+        .tier-header {
+            padding: 10px 14px;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 9.5pt;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tier-1 .tier-header { background: linear-gradient(90deg, #991b1b 0%, #dc2626 100%); }
+        .tier-2 .tier-header { background: linear-gradient(90deg, #065f46 0%, #059669 100%); }
+        .tier-3 .tier-header { background: linear-gradient(90deg, #1e40af 0%, #2563eb 100%); }
+
+        .day-badge-header {
+            background: rgba(255, 255, 255, 0.25);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 7.5pt;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .section-divider {
+            background-color: #f1f5f9;
+            padding: 4px 14px;
+            font-weight: 700;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            color: var(--subtext-color);
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            letter-spacing: 0.3px;
+        }
+
+        /* Desktop Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: var(--subtext-color);
+            text-align: left;
+            font-weight: 600;
+            font-size: 7.5pt;
+            padding: 6px 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        td {
+            padding: 6px 12px;
+            font-size: 8pt;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background-color: #fafafa; }
+
+        .ex-name { font-weight: 700; color: #0f172a; }
+
+        .ex-badge {
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 6.5pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 6px;
+        }
+
+        .badge-lower { background-color: #dbeafe; color: #1e40af; }
+        .badge-core { background-color: #fef3c7; color: #92400e; }
+        .badge-upper { background-color: #f3e8ff; color: #6b21a8; }
+
+        .tempo { font-family: monospace; font-weight: 600; color: #0284c7; }
+
+        /* Smartphone / Responsive Layout Tweaks */
+        @media (max-width: 680px) {
+            body { padding: 8px; }
+            
+            .schedule-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+            
+            .schedule-grid .day-box:last-child {
+                grid-column: span 2;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead { display: none; }
+
+            tr {
+                border-bottom: 1px solid #e2e8f0;
+                padding: 8px 12px;
+            }
+
+            td {
+                padding: 3px 0;
+                border: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: right;
+            }
+
+            td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: #64748b;
+                font-size: 7pt;
+                text-transform: uppercase;
+                text-align: left;
+                padding-right: 10px;
+            }
+
+            .ex-name { font-size: 8.5pt; }
+        }
+
+        @media print {
+            body { padding: 0; background-color: #ffffff; }
+            .container { max-width: 100%; }
+            .tier-card { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Mon / Wed / Fri Gym & Marathon Schedule</h1>
+        <p>Integrated Plan | Tuesday MP/Threshold Intervals & Thursday Medium Long Run (MLR)</p>
+    </div>
+
+    <!-- Weekly Overview Grid -->
+    <div class="schedule-card">
+        <div class="schedule-title">Weekly Periodization Map</div>
+        <div class="schedule-grid">
+            <div class="day-box">
+                <div class="day-name">Mon (Gym)</div>
+                <div class="day-run">Run Rest</div>
+                <div class="day-lift lift-t34">Tier 3 & Tier 4</div>
+            </div>
+            <div class="day-box">
+                <div class="day-name">Tue</div>
+                <div class="day-run">MP / Threshold</div>
+                <div class="day-lift lift-rest">No Gym</div>
+            </div>
+            <div class="day-box">
+                <div class="day-name">Wed (Gym)</div>
+                <div class="day-run">Easy Run</div>
+                <div class="day-lift lift-t1">Tier 1 Lift</div>
+            </div>
+            <div class="day-box">
+                <div class="day-name">Thu</div>
+                <div class="day-run">Medium Long Run</div>
+                <div class="day-lift lift-rest">No Gym</div>
+            </div>
+            <div class="day-box">
+                <div class="day-name">Fri (Gym)</div>
+                <div class="day-run">Run Rest</div>
+                <div class="day-lift lift-t2">Tier 2 Lift</div>
+            </div>
+            <div class="day-box">
+                <div class="day-name">Sat</div>
+                <div class="day-run">Shakeout / Rest</div>
+                <div class="day-lift lift-rest">Off / Rest</div>
+            </div>
+            <div class="day-box">
+                <div class="day-name">Sun</div>
+                <div class="day-run">Long Run</div>
+                <div class="day-lift lift-rest">Run Priority</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TIER 3 & 4 (MONDAY) -->
+    <div class="tier-card tier-3">
+        <div class="tier-header">
+            <span>TIER 3 & 4: Core Anti-Rotation, Upper Body & Auxiliary Arms</span>
+            <span class="day-badge-header">Execute: Monday Gym Session</span>
+        </div>
+        <div class="section-divider">Core Anti-Rotation & Stability (4 Exercises)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 28%;">Exercise</th>
+                    <th style="width: 18%;">Prescription</th>
+                    <th style="width: 20%;">Tempo / Cues</th>
+                    <th style="width: 34%;">Primary Target & Benefit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Side Planks w/ Top Leg Abduction</span> <span class="ex-badge badge-core">Core</span></td>
+                    <td data-label="Prescription">3 sets × 30–45s/side</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">30–45s isometric hold</span> with a steady 1s lift/lower cadence for leg abductions.</td>
+                    <td data-label="Benefit">Oblique & hip abductor co-contraction for stride alignment.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Cable / Band Pallof Press</span> <span class="ex-badge badge-core">Core</span></td>
+                    <td data-label="Prescription">3 sets × 10–12 reps/side</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">2s push out</span>, <span class="tempo">2s isometric hold</span> at full extension, <span class="tempo">2s return</span>, <span class="tempo">0s rest</span>.</td>
+                    <td data-label="Benefit">Anti-rotation stability against torso twisting under fatigue.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Copenhagen Adductor Side Planks</span> <span class="ex-badge badge-core">Core</span></td>
+                    <td data-label="Prescription">3 sets × 20–30s/side</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">20–30s static isometric hold</span> maintaining rigid posture and top knee pressure.</td>
+                    <td data-label="Benefit">Groin & adductor resilience to prevent pelvic torque.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Single-Arm Suitcase Farmer's Carries</span> <span class="ex-badge badge-core">Core</span></td>
+                    <td data-label="Prescription">3 sets × 40–50 meters/side</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">Continuous controlled walk pace</span> with zero lateral torso lean.</td>
+                    <td data-label="Benefit">Deep core anti-lateral flexion & grip endurance.</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="section-divider">Primary & Auxiliary Upper Body (5 Exercises)</div>
+        <table>
+            <tbody>
+                <tr>
+                    <td data-label="Exercise" style="width: 28%;"><span class="ex-name">Incline Dumbbell Bench Press</span> <span class="ex-badge badge-upper">Upper</span></td>
+                    <td data-label="Prescription" style="width: 18%;">3 sets × 8–10 reps</td>
+                    <td data-label="Tempo / Cues" style="width: 20%;"><span class="tempo">2-0-1-0</span> (<span class="tempo">2s lowering</span>, <span class="tempo">0s bottom pause</span>, <span class="tempo">1s press up</span>, <span class="tempo">0s lockout</span>).</td>
+                    <td data-label="Benefit" style="width: 34%;">Upper chest & anterior shoulder stability for uphill drive.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Chest-Supported Dumbbell Rows</span> <span class="ex-badge badge-upper">Upper</span></td>
+                    <td data-label="Prescription">3 sets × 10–12 reps</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">2-1-1-1</span> (<span class="tempo">2s lowering</span>, <span class="tempo">1s bottom stretch</span>, <span class="tempo">1s pull</span>, <span class="tempo">1s top squeeze</span>).</td>
+                    <td data-label="Benefit">Mid-back posture to prevent rounding over late in the race.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Parallel Bar Dips</span> <span class="ex-badge badge-upper">Upper</span></td>
+                    <td data-label="Prescription">3 sets × 8–12 reps</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">2-0-1-0</span> (<span class="tempo">2s lowering</span> to 90° elbows, <span class="tempo">0s bottom pause</span>, <span class="tempo">1s push up</span>, <span class="tempo">0s top lockout</span>).</td>
+                    <td data-label="Benefit">Lower chest, front delts, and tricep push power.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Overhead Rope Tricep Extensions</span> <span class="ex-badge badge-upper">Upper</span></td>
+                    <td data-label="Prescription">3 sets × 12–15 reps</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">2-0-1-1</span> (<span class="tempo">2s lowering</span>, <span class="tempo">0s bottom pause</span>, <span class="tempo">1s extension up</span>, <span class="tempo">1s top squeeze</span>).</td>
+                    <td data-label="Benefit">Long-head tricep endurance for backward arm swing.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Incline Dumbbell Bicep Curls</span> <span class="ex-badge badge-upper">Upper</span></td>
+                    <td data-label="Prescription">3 sets × 10–12 reps</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">3-0-1-0</span> (<span class="tempo">3s lowering</span>, <span class="tempo">0s bottom pause</span>, <span class="tempo">1s curl up</span>, <span class="tempo">0s top pause</span>).</td>
+                    <td data-label="Benefit">Bicep long-head strength for rhythmic forward arm drive.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TIER 1 (WEDNESDAY) -->
+    <div class="tier-card tier-1">
+        <div class="tier-header">
+            <span>TIER 1: Downhill Quad Armor & Eccentric Durability</span>
+            <span class="day-badge-header">Execute: Wednesday Gym Session (Post-Easy Run)</span>
+        </div>
+        <div class="section-divider">Quad & Eccentric Focus (5 Exercises)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 28%;">Exercise</th>
+                    <th style="width: 18%;">Prescription</th>
+                    <th style="width: 20%;">Tempo / Cues</th>
+                    <th style="width: 34%;">Primary Target & Benefit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Slow Eccentric Box Step-Downs</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 8–10 reps/side</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">3-0-1-1</span> (<span class="tempo">3s controlled lowering</span>, <span class="tempo">0s bottom tap</span>, <span class="tempo">1s drive up</span>, <span class="tempo">1s top lockout</span>).</td>
+                    <td data-label="Benefit">VMO & Patellar tendon durability for steep downhills.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Walking Dumbbell Lunges</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 10–12 steps/side</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">2-1-1-0</span> (<span class="tempo">2s step down/lower</span>, <span class="tempo">1s bottom pause</span>, <span class="tempo">1s drive up</span>, <span class="tempo">0s step transition</span>).</td>
+                    <td data-label="Benefit">Unilateral quad braking strength & hip deceleration.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Isometric Wall Sits w/ Single-Leg Extension</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 45–60s hold</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">45–60s static isometric hold</span> at a 90° knee angle with continuous wall pressure.</td>
+                    <td data-label="Benefit">Isometric fatigue resistance under continuous muscular tension.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Bulgarian Split Squats</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 8–10 reps/leg</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">3-1-1-1</span> (<span class="tempo">3s lowering</span>, <span class="tempo">1s bottom pause</span>, <span class="tempo">1s drive up</span>, <span class="tempo">1s top lockout</span>).</td>
+                    <td data-label="Benefit">Deep quad & glute hypertrophy with pelvic balance.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Goblet Front Squats</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 10–12 reps</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">3-1-1-0</span> (<span class="tempo">3s lowering</span>, <span class="tempo">1s bottom pause</span>, <span class="tempo">1s drive up</span>, <span class="tempo">0s top rest</span>).</td>
+                    <td data-label="Benefit">Anterior chain load tolerance & upright core stabilization.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- TIER 2 (FRIDAY) -->
+    <div class="tier-card tier-2">
+        <div class="tier-header">
+            <span>TIER 2: Posterior Chain, Hips & Lower-Leg Stability</span>
+            <span class="day-badge-header">Execute: Friday Gym Session</span>
+        </div>
+        <div class="section-divider">Posterior & Lower Leg Focus (6 Exercises)</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 28%;">Exercise</th>
+                    <th style="width: 18%;">Prescription</th>
+                    <th style="width: 20%;">Tempo / Cues</th>
+                    <th style="width: 34%;">Primary Target & Benefit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Single-Leg Dumbbell RDLs</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 8–10 reps/leg</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">3-1-1-1</span> (<span class="tempo">3s hip hinge lowering</span>, <span class="tempo">1s bottom stretch</span>, <span class="tempo">1s drive up</span>, <span class="tempo">1s top squeeze</span>).</td>
+                    <td data-label="Benefit">Hamstring lengthening under load & pelvic rotation control.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Single-Leg Glute Bridges</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 12–15 reps/side</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">2-1-1-2</span> (<span class="tempo">2s lower</span>, <span class="tempo">1s bottom pause</span>, <span class="tempo">1s lift</span>, <span class="tempo">2s peak squeeze</span> at the top).</td>
+                    <td data-label="Benefit">Gluteus maximus isolation & hip extension power.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Mini-Band Monster Walks & Clamshells</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 15–20 reps/dir</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">1-1-1-0</span> (<span class="tempo">1s controlled step/abduction</span>, <span class="tempo">1s peak hold</span>, <span class="tempo">1s return</span> under constant band tension).</td>
+                    <td data-label="Benefit">Gluteus medius conditioning to prevent knee valgus/collapse.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Straight-Knee Calf Raises (Gastroc Focus)</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 12–15 reps</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">3-2-1-1</span> (<span class="tempo">3s lowering</span>, <span class="tempo">2s bottom stretch</span>, <span class="tempo">1s drive up</span>, <span class="tempo">1s top pause</span>).</td>
+                    <td data-label="Benefit">Gastrocnemius tendon stiffness and explosive push-off power.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Bent-Knee Calf Raises (Soleus Focus)</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 15–20 reps</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">3-2-1-1</span> (<span class="tempo">3s lowering</span> with slight knee bend, <span class="tempo">2s bottom stretch</span>, <span class="tempo">1s drive up</span>, <span class="tempo">1s top pause</span>).</td>
+                    <td data-label="Benefit">Soleus endurance (absorbs up to 8x body weight) for late-race cramp prevention.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Tibialis Wall Raises</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">2–3 sets × 15–20 reps</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">1-2-2-0</span> (<span class="tempo">1s pull up</span>, <span class="tempo">2s top hold</span>, <span class="tempo">2s lower</span>, <span class="tempo">0s bottom</span>).</td>
+                    <td data-label="Benefit">Active dorsiflexion and shin splint prevention.</td>
+                </tr>
+                <tr>
+                    <td data-label="Exercise"><span class="ex-name">Swiss Ball / Machine Hamstring Curls</span> <span class="ex-badge badge-lower">Lower</span></td>
+                    <td data-label="Prescription">3 sets × 10–12 reps</td>
+                    <td data-label="Tempo / Cues"><span class="tempo">2-1-1-1</span> (<span class="tempo">2s extend legs</span>, <span class="tempo">1s bottom pause</span>, <span class="tempo">1s curl in</span>, <span class="tempo">1s top squeeze</span>).</td>
+                    <td data-label="Benefit">Isolated hamstring contraction during late stride recovery.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
             --border-color: #cbd5e1;
             --subtext-color: #475569;
         }
