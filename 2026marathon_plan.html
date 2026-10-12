@@ -27,7 +27,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -122,7 +122,7 @@
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            min-width: 780px;
+            min-width: 1150px;
         }
 
         .schedule-table th {
@@ -155,12 +155,54 @@
         }
 
         .wk-col { 
-            width: 11%; 
-            background-color: #f1f5f9 !important; 
-            font-weight: bold; 
+            width: 7.4%; 
         }
         
-        .day-col { width: 12.7%; }
+        .day-col { width: 8.5%; background-color: #f1f5f9 !important; font-weight: bold; }
+
+        /* Column Highlight Styling */
+        .col-peak {
+            background-color: #fefce8 !important;
+            border-bottom: 1.5px solid #fde047 !important;
+        }
+
+        .col-bridge {
+            background-color: #f0fdf4 !important;
+            border-bottom: 1.5px solid #86efac !important;
+        }
+
+        /* Current Week Highlight Styling */
+        .col-current {
+            background-color: #fef08a !important;
+            border-left: 3px solid #ca8a04 !important;
+            border-right: 3px solid #ca8a04 !important;
+            box-shadow: inset 0 0 0 2px #eab308;
+        }
+
+        th.col-current {
+            background-color: #713f12 !important;
+            color: #ffffff !important;
+            border-top: 3px solid #facc15 !important;
+        }
+
+        .badge-current {
+            background-color: #facc15;
+            color: #713f12;
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-size: 6pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-top: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
 
         /* Mobile Sticky Column */
         .schedule-table th:first-child,
@@ -187,17 +229,6 @@
         .tag-mlr { color: #d97706; font-weight: 700; }
         .tag-easy { color: #2563eb; font-weight: 700; }
         .tag-flush { color: #64748b; font-weight: 700; }
-
-        /* Highlight Rows */
-        .highlight-peak td {
-            background-color: #fefce8 !important;
-            border-bottom: 1.5px solid #fde047 !important;
-        }
-
-        .highlight-bridge td {
-            background-color: #f0fdf4 !important;
-            border-bottom: 1.5px solid #86efac !important;
-        }
 
         .badge-peak {
             background-color: #facc15;
@@ -338,135 +369,125 @@
         <table class="schedule-table">
             <thead>
                 <tr>
-                    <th class="wk-col">Wk / Volume</th>
-                    <th class="day-col">Mon</th>
-                    <th class="day-col">Tue (Quality)</th>
-                    <th class="day-col">Wed (Flush)</th>
-                    <th class="day-col">Thu (MLR)</th>
-                    <th class="day-col">Fri</th>
-                    <th class="day-col">Sat (Hills/Strides)</th>
-                    <th class="day-col">Sun (Long Run & Elev)</th>
+                    <th class="day-col">Day</th>
+                    <th class="wk-col">W1<br><strong>30 mi</strong></th>
+                    <th class="wk-col">W2<br><strong>39 mi</strong></th>
+                    <th class="wk-col">W3<br><strong>41 mi</strong></th>
+                    <th class="wk-col">W4<br><strong>44 mi</strong></th>
+                    <th class="wk-col">W5<br><strong>34 mi</strong><br><span class="badge-taper">Deload</span></th>
+                    <th class="wk-col col-current" id="current-week-col">W6<br><strong>46 mi</strong><br><span class="badge-current">Current</span></th>
+                    <th class="wk-col">W7<br><strong>45 mi</strong></th>
+                    <th class="wk-col" style="background-color: #fefce8; color: #1e293b;">W8<br><strong>45 mi</strong><br><span class="badge-peak">PEAK</span></th>
+                    <th class="wk-col" style="background-color: #f0fdf4; color: #1e293b;">W9<br><strong>41 mi</strong><br><span class="badge-bridge">BRIDGE</span></th>
+                    <th class="wk-col">W10<br><strong>31 mi</strong><br><span class="badge-taper">Taper 1</span></th>
+                    <th class="wk-col">W11<br><strong>25 mi</strong><br><span class="badge-taper">Taper 2</span></th>
+                    <th class="wk-col">W12<br><strong>RACE</strong></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="wk-col">W1 (Sep 7-13)<br><strong>30 mi</strong></td>
+                    <td class="day-col">Mon[cite: 6]</td>
                     <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-easy">EASY</span><br>6m Easy</td>
-                    <td><span class="tag-easy">EASY</span><br>6m Easy<br><span class="subtext">HEAVY LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>6m Easy + 4x Strides</td>
-                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>3m Shakeout + 4x Hills</td>
-                    <td><span class="tag-long">LONG RUN</span><br>9m Easy (Aerobic)<br><span class="subtext">Elev: ~200–250 ft</span></td>
-                </tr>
-                <tr>
-                    <td class="wk-col">W2 (Sep 14-20)<br><strong>39 mi</strong></td>
                     <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-threshold">THRESHOLD</span><br>8m (4 x 1m LT)</td>
-                    <td><span class="tag-easy">EASY</span><br>7m Easy<br><span class="subtext">HEAVY LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>7m Easy + 4x Strides</td>
-                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Hills</td>
-                    <td><span class="tag-long">LONG RUN</span><br>14m Aerobic<br><span class="subtext">Elev: ~350–400 ft</span></td>
-                </tr>
-                <tr>
-                    <td class="wk-col">W3 (Sep 21-27)<br><strong>41 mi</strong></td>
                     <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-marathon">MARATHON</span><br>8m (2-3m @ MP)</td>
-                    <td><span class="tag-easy">EASY</span><br>7m Easy<br><span class="subtext">HEAVY LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>7m Easy + 4x Strides</td>
-                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Hills</td>
-                    <td><span class="tag-long">LONG RUN</span><br>15m Easy/Steady<br><span class="subtext">Elev: ~400–450 ft</span></td>
-                </tr>
-                <tr>
-                    <td class="wk-col">W4 (Sep 28-Oct 4)<br><strong>44 mi</strong></td>
                     <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-threshold">THRESHOLD</span><br>9m (5 x 1m LT)</td>
-                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
-                    <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>4m + Hills/Strides</td>
-                    <td><span class="tag-long">LONG RUN</span><br>16m Continuous<br><span class="subtext">Elev: 500–600 ft</span></td>
-                </tr>
-                <tr>
-                    <td class="wk-col">W5 (Oct 5-11)<br><strong>34 mi</strong><br><span class="badge-taper">Deload</span></td>
                     <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-marathon">MARATHON</span><br>8m (3m @ MP)</td>
-                    <td><span class="tag-flush">FLUSH</span><br>3m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
-                    <td><span class="tag-mlr">MLR</span><br>8m Deload<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>3m Easy Shakeout</td>
-                    <td><span class="tag-long">LONG RUN</span><br>12m Deload<br><span class="subtext">Elev: ~300–350 ft</span></td>
-                </tr>
-                <tr>
-                    <td class="wk-col">W6 (Oct 12-18)<br><strong>46 mi</strong></td>
+                    <td class="col-current">REST<br><span class="subtext">UPPER/CORE</span></td>
                     <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-threshold">THRESHOLD</span><br>9m (3 x 2m LT)</td>
-                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
-                    <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>4m + Hills/Strides</td>
-                    <td><span class="tag-long">LONG RUN</span><br>18m (10m E + 6m MP)<br><span class="subtext">Elev: 600–700 ft</span></td>
-                </tr>
-                <tr>
-                    <td class="wk-col">W7 (Oct 19-25)<br><strong>45 mi</strong></td>
+                    <td class="col-peak">REST<br><span class="subtext">UPPER/CORE</span></td>
+                    <td class="col-bridge">REST<br><span class="subtext">UPPER/CORE</span></td>
                     <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-marathon">MARATHON</span><br>9m (4m @ MP)</td>
-                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
-                    <td><span class="tag-mlr">MLR</span><br>12m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>4m + Strides</td>
-                    <td><span class="tag-long">LONG RUN</span><br>16m Rolling Hills<br><span class="subtext">Elev: 750–850 ft</span></td>
-                </tr>
-                <tr class="highlight-peak">
-                    <td class="wk-col">W8 (Oct 26-Nov 1)<br><strong>45 mi</strong><br><span class="badge-peak">PEAK WEEK</span></td>
-                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-threshold">THRESHOLD</span><br>8m + Strides</td>
-                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER (LAST)</span></td>
-                    <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                    <td>REST<br><span class="subtext">LIGHT CORE / LIGHT LOWER</span></td>
-                    <td><span class="tag-easy">EASY</span><br>2m Shakeout</td>
-                    <td><span class="tag-long">PEAK TEST</span><br>20m (10m E + 8m MP)<br><span class="subtext">Elev: ~818 ft (Course Sim)</span></td>
-                </tr>
-                <tr class="highlight-bridge">
-                    <td class="wk-col">W9 (Nov 2-8)<br><strong>41 mi</strong><br><span class="badge-bridge">BRIDGE WEEK</span></td>
-                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-threshold">THRESHOLD</span><br>8m (3 x 1m LT)</td>
-                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">LIGHT UPPER/CORE (NO HEAVY LOWER)</span></td>
-                    <td><span class="tag-mlr">MLR</span><br>10m Continuous<br><span class="subtext">135–152 bpm Aerobic</span></td>
-                    <td>REST<br><span class="subtext">LIGHT UPPER/CORE + LIGHT LOWER MOBILITY</span></td>
-                    <td><span class="tag-easy">EASY</span><br>3m Easy + Strides</td>
-                    <td><span class="tag-long">LONG RUN</span><br>16m Steady<br><span class="subtext">Elev: 500–600 ft</span></td>
-                </tr>
-                <tr>
-                    <td class="wk-col">W10 (Nov 9-15)<br><strong>31 mi</strong><br><span class="badge-taper">Taper 1</span></td>
-                    <td>REST<br><span class="subtext">UPPER/CORE</span></td>
-                    <td><span class="tag-marathon">MARATHON</span><br>7m (3m @ MP)</td>
-                    <td><span class="tag-easy">EASY</span><br>6m Easy<br><span class="subtext">LIGHT UPPER/CORE + LIGHT LOWER MAINT.</span></td>
-                    <td><span class="tag-easy">EASY</span><br>5m Easy + 4x Strides</td>
-                    <td>REST<br><span class="subtext">LIGHT UPPER/CORE + LIGHT LOWER MAINT.</span></td>
-                    <td><span class="tag-easy">EASY</span><br>3m Easy + 4x Hills</td>
-                    <td><span class="tag-long">LONG RUN</span><br>10m Taper<br><span class="subtext">Elev: ~300 ft</span></td>
-                </tr>
-                <tr>
-                    <td class="wk-col">W11 (Nov 16-22)<br><strong>25 mi</strong><br><span class="badge-taper">Taper 2</span></td>
                     <td>REST<br><span class="subtext">LIGHT UPPER/CORE</span></td>
-                    <td><span class="tag-marathon">MARATHON</span><br>6m (2m @ MP)</td>
-                    <td><span class="tag-easy">EASY</span><br>5m Easy<br><span class="subtext">LIGHT UPPER/CORE + BODYWEIGHT ACTIVATION</span></td>
-                    <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Strides</td>
-                    <td>REST<br><span class="subtext">LIGHT UPPER/CORE</span></td>
-                    <td><span class="tag-easy">EASY</span><br>3m Shakeout</td>
-                    <td><span class="tag-long">LONG RUN</span><br>7m Easy<br><span class="subtext">Elev: &lt;200 ft</span></td>
-                </tr>
-                <tr>
-                    <td class="wk-col">W12 (Nov 23-29)<br><strong>RACE WEEK</strong></td>
                     <td>REST</td>
-                    <td><span class="tag-easy">EASY</span><br>4m Easy + Strides<br><span class="subtext">FINAL LIGHT UPPER (OPTIONAL)</span></td>
+                </tr>
+                <tr>
+                    <td class="day-col">Tue (Quality)[cite: 6]</td>
+                    <td><span class="tag-easy">EASY</span><br>6m Easy</td>
+                    <td><span class="tag-threshold">THRESHOLD</span><br>8m (4 x 1m LT)</td>
+                    <td><span class="tag-marathon">MARATHON</span><br>8m (2-3m @ MP)</td>
+                    <td><span class="tag-threshold">THRESHOLD</span><br>9m (5 x 1m LT)</td>
+                    <td><span class="tag-marathon">MARATHON</span><br>8m (3m @ MP)</td>
+                    <td class="col-current"><span class="tag-threshold">THRESHOLD</span><br>9m (3 x 2m LT)</td>
+                    <td><span class="tag-marathon">MARATHON</span><br>9m (4m @ MP)</td>
+                    <td class="col-peak"><span class="tag-threshold">THRESHOLD</span><br>8m + Strides</td>
+                    <td class="col-bridge"><span class="tag-threshold">THRESHOLD</span><br>8m (3 x 1m LT)</td>
+                    <td><span class="tag-marathon">MARATHON</span><br>7m (3m @ MP)</td>
+                    <td><span class="tag-marathon">MARATHON</span><br>6m (2m @ MP)</td>
+                    <td><span class="tag-easy">EASY</span><br>4m Easy + Strides<br><span class="subtext">FINAL LIGHT UPPER</span></td>
+                </tr>
+                <tr>
+                    <td class="day-col">Wed (Flush)[cite: 6]</td>
+                    <td><span class="tag-easy">EASY</span><br>6m Easy<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>7m Easy<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-easy">EASY</span><br>7m Easy<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-flush">FLUSH</span><br>3m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td class="col-current"><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER</span></td>
+                    <td class="col-peak"><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">HEAVY LOWER (LAST)</span></td>
+                    <td class="col-bridge"><span class="tag-flush">FLUSH</span><br>4m Easy (&lt;135 bpm)<br><span class="subtext">LIGHT UPPER/CORE</span></td>
+                    <td><span class="tag-easy">EASY</span><br>6m Easy<br><span class="subtext">LIGHT UPPER/CORE + MAINT.</span></td>
+                    <td><span class="tag-easy">EASY</span><br>5m Easy<br><span class="subtext">LIGHT UPPER/CORE + ACTIVATION</span></td>
                     <td><span class="tag-easy">EASY</span><br>3m Shakeout</td>
+                </tr>
+                <tr>
+                    <td class="day-col">Thu (MLR)[cite: 6]</td>
+                    <td><span class="tag-easy">EASY</span><br>6m Easy + 4x Strides</td>
+                    <td><span class="tag-easy">EASY</span><br>7m Easy + 4x Strides</td>
+                    <td><span class="tag-easy">EASY</span><br>7m Easy + 4x Strides</td>
+                    <td><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm</span></td>
+                    <td><span class="tag-mlr">MLR</span><br>8m Deload<br><span class="subtext">135–152 bpm</span></td>
+                    <td class="col-current"><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm</span></td>
+                    <td><span class="tag-mlr">MLR</span><br>12m Continuous<br><span class="subtext">135–152 bpm</span></td>
+                    <td class="col-peak"><span class="tag-mlr">MLR</span><br>11m Continuous<br><span class="subtext">135–152 bpm</span></td>
+                    <td class="col-bridge"><span class="tag-mlr">MLR</span><br>10m Continuous<br><span class="subtext">135–152 bpm</span></td>
+                    <td><span class="tag-easy">EASY</span><br>5m Easy + 4x Strides</td>
+                    <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Strides</td>
                     <td><span class="tag-easy">EASY</span><br>4m Easy (TGiv)</td>
+                </tr>
+                <tr>
+                    <td class="day-col">Fri[cite: 6]</td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td class="col-current">REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td>REST<br><span class="subtext">UPPER/CORE / LIGHT LOWER</span></td>
+                    <td class="col-peak">REST<br><span class="subtext">LIGHT CORE / LOWER</span></td>
+                    <td class="col-bridge">REST<br><span class="subtext">LIGHT UPPER + MOBILITY</span></td>
+                    <td>REST<br><span class="subtext">LIGHT UPPER + MAINT.</span></td>
+                    <td>REST<br><span class="subtext">LIGHT UPPER/CORE</span></td>
                     <td>REST<br><span class="subtext">Expo / Rest</span></td>
+                </tr>
+                <tr>
+                    <td class="day-col">Sat (Hills/Strides)[cite: 6]</td>
+                    <td><span class="tag-easy">EASY</span><br>3m Shakeout + 4x Hills</td>
+                    <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Hills</td>
+                    <td><span class="tag-easy">EASY</span><br>4m Easy + 4x Hills</td>
+                    <td><span class="tag-easy">EASY</span><br>4m + Hills/Strides</td>
+                    <td><span class="tag-easy">EASY</span><br>3m Easy Shakeout</td>
+                    <td class="col-current"><span class="tag-easy">EASY</span><br>4m + Hills/Strides</td>
+                    <td><span class="tag-easy">EASY</span><br>4m + Strides</td>
+                    <td class="col-peak"><span class="tag-easy">EASY</span><br>2m Shakeout</td>
+                    <td class="col-bridge"><span class="tag-easy">EASY</span><br>3m Easy + Strides</td>
+                    <td><span class="tag-easy">EASY</span><br>3m Easy + 4x Hills</td>
+                    <td><span class="tag-easy">EASY</span><br>3m Shakeout</td>
                     <td><span class="tag-easy">EASY</span><br>2m Opener / Expo</td>
+                </tr>
+                <tr>
+                    <td class="day-col">Sun (Long Run)[cite: 6]</td>
+                    <td><span class="tag-long">LONG RUN</span><br>9m Easy (Aerobic)<br><span class="subtext">Elev: ~200–250 ft</span></td>
+                    <td><span class="tag-long">LONG RUN</span><br>14m Aerobic<br><span class="subtext">Elev: ~350–400 ft</span></td>
+                    <td><span class="tag-long">LONG RUN</span><br>15m Easy/Steady<br><span class="subtext">Elev: ~400–450 ft</span></td>
+                    <td><span class="tag-long">LONG RUN</span><br>16m Continuous<br><span class="subtext">Elev: 500–600 ft</span></td>
+                    <td><span class="tag-long">LONG RUN</span><br>12m Deload<br><span class="subtext">Elev: ~300–350 ft</span></td>
+                    <td class="col-current"><span class="tag-long">LONG RUN</span><br>18m (10m E + 6m MP)<br><span class="subtext">Elev: 600–700 ft</span></td>
+                    <td><span class="tag-long">LONG RUN</span><br>16m Rolling Hills<br><span class="subtext">Elev: 750–850 ft</span></td>
+                    <td class="col-peak"><span class="tag-long">PEAK TEST</span><br>20m (10m E + 8m MP)<br><span class="subtext">Elev: ~818 ft</span></td>
+                    <td class="col-bridge"><span class="tag-long">LONG RUN</span><br>16m Steady<br><span class="subtext">Elev: 500–600 ft</span></td>
+                    <td><span class="tag-long">LONG RUN</span><br>10m Taper<br><span class="subtext">Elev: ~300 ft</span></td>
+                    <td><span class="tag-long">LONG RUN</span><br>7m Easy<br><span class="subtext">Elev: &lt;200 ft</span></td>
                     <td><span class="tag-marathon" style="font-size: 8pt;">RACE DAY</span><br><strong>SEATTLE MARATHON</strong><br><span class="subtext">Target: Sub-3:30 (7:55/mi)</span></td>
                 </tr>
             </tbody>
@@ -474,6 +495,15 @@
     </div>
 
 </div>
+
+<script>
+    window.addEventListener("load", function() {
+        const currentEl = document.getElementById("current-week-col");
+        if (currentEl) {
+            currentEl.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
+    });
+</script>
 
 </body>
 </html>
